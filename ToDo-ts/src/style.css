@@ -1,96 +1,137 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 5rem;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#toDo_fieldset {
+    border: 1px solid #000;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+#toDo_div{
+    display: flex;
+    background-color: #e5c2e031;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+#toDo_input{
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    position: relative;
+    width: 100%;
 }
 
-.card {
-  padding: 2em;
+#toDo_button{
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+#toDo_button img{
+    width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#toDo_section {
+    border: 1px solid #000;
+    padding: 1rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#toDo_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#toDo_list li {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.toDo_left,
+.toDo_right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toDo_checkBtn_done {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #397445;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c1e5c8;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+}
+
+.toDo_checkBtn_done img {
+    position: absolute;
+    width: 60px;
+    top: -23px;
+    left: -13px;
+    /* background-color: #397445; */
+}
+
+.toDo_checkBtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* border: 3px solid #f3aa22; */
+    border: 3px solid #d083c5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #ffd381; */
+    background-color: #e5c2e0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+}
+
+#toDo_list li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    position: relative;
+    cursor: pointer;
+}
+
+.img_edit{
+    width: 130%;
+    position: absolute;
+    bottom: -2.5px;
+    left: -3px;
+}
+.img_delete {
+    width: 100%;
 }

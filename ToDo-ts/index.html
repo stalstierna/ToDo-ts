@@ -1,13 +1,67 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+    <title>ToDo List</title>
+</head>
+<body>
+    <header>
+        <h1>TO DO LIST</h1>
+    </header>
+
+    <fieldset id="toDo_fieldset">
+        <div id="toDo_div">
+        <input type="text" id="toDo_input" placeholder="Att göra...">
+        <button id="toDo_button"><img src="img/plus-svgrepo-com (1).svg" alt=""></button>
+        </div>
+    </fieldset>
+    
+    <section id="toDo_section">
+        <ul id="toDo_list">
+            <li>
+                <div class="toDo_left">
+                    <div class="toDo_checkBtn_done"><img src="img/check-small-svgrepo-com.svg" alt=""></div>
+                     Plocka ur diskmaskinen
+                </div>
+                <div class="toDo_right">
+                    <button><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                </div>
+            </li>
+            <li>
+                <div class="toDo_left">
+                    <div class="toDo_checkBtn"></div>
+                     Mata kaninerna
+                </div>
+                <div class="toDo_right">
+                    <button><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                </div>
+            </li>
+            <li>
+                <div class="toDo_left">
+                    <div class="toDo_checkBtn"></div>
+                     Tvätta
+                </div>
+                <div class="toDo_right">
+                    <button><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                </div>
+            </li>
+            <li>
+                <div class="toDo_left">
+                    <div class="toDo_checkBtn"></div>
+                     Städa
+                </div>
+                <div class="toDo_right">
+                    <button><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                </div>
+            </li>
+          </ul>
+    </section>
+
+</body>
 </html>
