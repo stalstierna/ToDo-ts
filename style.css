@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    list-style: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 5rem;
+}
+
+#toDo_fieldset {
+    border: 1px solid #000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+#toDo_div{
+    display: flex;
+    background-color: #e5c2e031;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#toDo_input{
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    position: relative;
+    width: 100%;
+}
+
+#toDo_button{
+    background-color: transparent;
+    border-radius: 5px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#toDo_button img{
+    width: 100%;
+}
+
+#toDo_section {
+    border: 1px solid #000;
+    padding: 1rem;
+}
+
+#toDo_list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#toDo_list li {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.toDo_left,
+.toDo_right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toDo_checkBtn_done {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 3px solid #397445;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c1e5c8;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+}
+
+.toDo_checkBtn_done img {
+    position: absolute;
+    width: 60px;
+    top: -23px;
+    left: -13px;
+    /* background-color: #397445; */
+}
+
+.toDo_checkBtn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* border: 3px solid #f3aa22; */
+    border: 3px solid #d083c5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #ffd381; */
+    background-color: #e5c2e0;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+}
+
+#toDo_list li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    position: relative;
+    cursor: pointer;
+}
+
+.img_edit{
+    width: 130%;
+    position: absolute;
+    bottom: -2.5px;
+    left: -3px;
+}
+.img_delete {
+    width: 100%;
+}
