@@ -19,7 +19,7 @@ toDoInputBtn?.addEventListener("click", () => {
 });
 
 toDoInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter"){
+  if (event.key === "Enter") {
     addTodo()
   }
 })
@@ -42,14 +42,14 @@ const addTodo = (): void => {
 
 const showTodoList = (): void => {
   const toDoHtml = toDoArr.map((task) =>
-             `<li class="toDo_task">
+    `<li class="toDo_task">
                 <div class="toDo_left">
                     <div class="toDo_checkBtn"></div>
                      ${task.task}
                 </div>
                 <div class="toDo_right">
                     <button class="edit_btn"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
-                    <button data-id="${task.id}" class="delete_btn"><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                    <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
                 </div>
              </li>`
   ).join("")
@@ -57,25 +57,35 @@ const showTodoList = (): void => {
   toDoUl.innerHTML = toDoHtml;
 
   const taskLi = document.querySelectorAll('.toDo_task');
-  
+
   taskLi.forEach(task => {
     task.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-      console.log(target.className)
-      if (target.className === "edit_btn"){
-        console.log("Edit",)
-      } else if (target.className === "delete_btn"){
-        console.log("Delete")
-      } else if (target.className === "toDo_checkBtn"){
-        console.log("check")
+      const dataId = target.dataset.id;
+
+      if (dataId != undefined) {
+        if (target.className === "edit_btn") {
+          console.log("Edit",)
+        } else if (target.className === "delete_btn") {
+          console.log("Delete")
+          deleteTodo(dataId)
+        } else if (target.className === "toDo_checkBtn") {
+          console.log("check")
+        }
       }
+
     })
   });
-  
+
 }
 
-const deleteTodo = () => {
-  
+const deleteTodo = (dataId: string): void => {
+  const findIndexOfTask: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
+
+  if (findIndexOfTask != undefined)
+  toDoArr.splice(toDoArr.indexOf(findIndexOfTask), 1)
+
+  showTodoList()
 }
 
 // function saveToStorage(){
@@ -85,9 +95,6 @@ const deleteTodo = () => {
 // }
 
 // function editTodo(){
-// }
-
-// function deleteTodo(){
 // }
 
 // function deleteList(){
