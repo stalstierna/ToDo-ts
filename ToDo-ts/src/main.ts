@@ -4,6 +4,8 @@ const toDoInputBtn = document.getElementById(
 ) as HTMLButtonElement;
 const toDoUl = document.getElementById("toDo_list") as HTMLUListElement;
 
+const underline = document.querySelector('.underline') as HTMLElement;
+
 const toDoArr: ToDo[] = [];
 let idNum = 0;
 
@@ -13,7 +15,7 @@ interface ToDo {
   completed: boolean;
 }
 
-toDoInputBtn?.addEventListener("click", () => {
+toDoInputBtn.addEventListener("click", () => {
   console.log(toDoInput.value);
   addTodo();
 });
@@ -24,10 +26,19 @@ toDoInput.addEventListener("keydown", (event) => {
   }
 })
 
+const animationUnderliner = () => {
+    underline.style.transition = "0.8s"
+    setTimeout(() => {
+    underline.style.width = "120px";
+    }, 800)
+    underline.style.width = "200px";
+}
+
 const addTodo = (): void => {
   const task = toDoInput.value.trim()
 
   if (toDoInput.value !== "") {
+    animationUnderliner()
     idNum += 1;
     toDoArr.push({
       id: idNum,
@@ -44,7 +55,10 @@ const showTodoList = (): void => {
   const toDoHtml = toDoArr.map((task) =>
     `<li class="toDo_task">
                 <div class="toDo_left">
-                    <div class="toDo_checkBtn"></div>
+                  <div class="${task.completed ? "toDo_checkBtn_done" : "toDo_checkBtn"
+    }" data-id="${task.id}">
+                     ${task.completed ? `<img src="img/check-small-svgrepo-com.svg" alt="">` : ""}
+                  </div>
                      ${task.task}
                 </div>
                 <div class="toDo_right">
@@ -57,7 +71,6 @@ const showTodoList = (): void => {
   toDoUl.innerHTML = toDoHtml;
 
   const taskLi = document.querySelectorAll('.toDo_task');
-
   taskLi.forEach(task => {
     task.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
@@ -65,33 +78,53 @@ const showTodoList = (): void => {
 
       if (dataId != undefined) {
         if (target.className === "edit_btn") {
-          console.log("Edit",)
+          console.log("Edit")
+          editTask(dataId)
         } else if (target.className === "delete_btn") {
           console.log("Delete")
-          deleteTodo(dataId)
+          deleteTask(dataId)
         } else if (target.className === "toDo_checkBtn") {
           console.log("check")
+          taskCompleted(dataId)
+        } else if (target.className === "toDo_checkBtn_done") {
+          console.log("undo")
+          taskCompleted(dataId)
         }
       }
 
     })
   });
-
+  console.log(toDoArr)
 }
 
-const deleteTodo = (dataId: string): void => {
-  const findIndexOfTask: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 
-  if (findIndexOfTask != undefined)
-  toDoArr.splice(toDoArr.indexOf(findIndexOfTask), 1)
+const deleteTask = (dataId: string): void => {
+  const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
+
+  if (task != undefined)
+    toDoArr.splice(toDoArr.indexOf(task), 1)
 
   showTodoList()
 }
 
-// function saveToStorage(){
-// }
+const taskCompleted = (dataId: string): void => {
+  const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 
-// function todoCompleted(){
+  if (task != undefined) {
+    if (task.completed === false) {
+      task.completed = true;
+    } else if (task.completed === true) {
+      task.completed = false;
+    }
+  }
+  showTodoList()
+}
+
+const editTask = (dataId: string): void => {
+  const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
+}
+
+// function saveToStorage(){
 // }
 
 // function editTodo(){

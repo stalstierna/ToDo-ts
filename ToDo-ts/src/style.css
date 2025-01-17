@@ -1,19 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: 0;
     list-style: none;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Exo';
 }
 
 body {
-    margin: 5rem;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    margin: 3rem;
+    margin-bottom: 3rem;
+    color: #9c7196;
+     -webkit-text-stroke: 2px #ffffff;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255);
+}
+
+.underline{
+    width: 120px;
+    height: 5px;
+    margin-top: 5px;
+    background-color: #9c7196;;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255);
+    border: 3px solid #ffffff;
+    /* transition: width 0.7s ease; */
+}
+
+/* .underline:hover{
+    width: 200px;
+    transition: 0.7s;
+} */
+
+
+main{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
 }
 
 #toDo_fieldset {
+    background-color: #fff;
     border: 1px solid #000;
+    border-radius: 10px;
     padding: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
+    margin: 0 3rem 1rem 3rem;
+
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 #toDo_div{
@@ -33,6 +82,15 @@ body {
     width: 100%;
 }
 
+button{
+    transition: 0.3s;
+}
+
+button:hover{
+opacity: 70%;
+transition: 0.3s;
+}
+
 #toDo_button{
     background-color: transparent;
     border-radius: 5px;
@@ -50,7 +108,11 @@ body {
 
 #toDo_section {
     border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding: 1rem;
+    margin: 0 3rem 1rem 3rem;
+    background-color: #fff;
 }
 
 #toDo_list {
@@ -87,6 +149,7 @@ body {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     position: relative;
+    transition: 0.3s;
 }
 
 .toDo_checkBtn_done img {
@@ -95,6 +158,7 @@ body {
     top: -23px;
     left: -13px;
     /* background-color: #397445; */
+    pointer-events: none;
 }
 
 .toDo_checkBtn {
@@ -111,7 +175,13 @@ body {
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     position: relative;
+    transition: 0.3s;
 }
+
+.toDo_checkBtn:hover, .toDo_checkBtn_done:hover{
+    transition: 0.3s;
+    opacity: 70%;
+    }
 
 #toDo_list li button {
     display: flex;
