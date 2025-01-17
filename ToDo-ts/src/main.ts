@@ -42,19 +42,40 @@ const addTodo = (): void => {
 
 const showTodoList = (): void => {
   const toDoHtml = toDoArr.map((task) =>
-             `<li>
+             `<li class="toDo_task">
                 <div class="toDo_left">
                     <div class="toDo_checkBtn"></div>
                      ${task.task}
                 </div>
                 <div class="toDo_right">
-                    <button><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
-                    <button><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                    <button class="edit_btn"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button data-id="${task.id}" class="delete_btn"><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
                 </div>
              </li>`
   ).join("")
 
   toDoUl.innerHTML = toDoHtml;
+
+  const taskLi = document.querySelectorAll('.toDo_task');
+  
+  taskLi.forEach(task => {
+    task.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      console.log(target.className)
+      if (target.className === "edit_btn"){
+        console.log("Edit",)
+      } else if (target.className === "delete_btn"){
+        console.log("Delete")
+      } else if (target.className === "toDo_checkBtn"){
+        console.log("check")
+      }
+    })
+  });
+  
+}
+
+const deleteTodo = () => {
+  
 }
 
 // function saveToStorage(){
