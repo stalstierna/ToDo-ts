@@ -6,7 +6,7 @@ const toDoUl = document.getElementById("toDo_list") as HTMLUListElement;
 
 const underline = document.querySelector('.underline') as HTMLElement;
 
-const toDoArr: ToDo[] = [];
+let toDoArr: ToDo[] = [];
 let idNum = 0;
 
 interface ToDo {
@@ -95,6 +95,7 @@ const showTodoList = (): void => {
     })
   });
   console.log(toDoArr)
+  saveToStorage()
 }
 
 
@@ -123,6 +124,20 @@ const taskCompleted = (dataId: string): void => {
 const editTask = (dataId: string): void => {
   const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 }
+
+function loadStorage():void {
+  const savedList: string | null = localStorage.getItem("todo-list");
+  if (savedList) {
+    toDoArr = JSON.parse(savedList)
+    showTodoList()
+  }
+}
+
+function saveToStorage():void {
+  localStorage.setItem("todo-list", JSON.stringify(toDoArr));
+}
+
+loadStorage()
 
 // function saveToStorage(){
 // }
