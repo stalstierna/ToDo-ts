@@ -59,7 +59,7 @@ const showTodoList = (): void => {
     }" data-id="${task.id}">
                      ${task.completed ? `<img src="img/check-small-svgrepo-com.svg" alt="">` : ""}
                   </div>
-                     ${task.task}
+                    <p> ${task.task} </p>
                 </div>
                 <div class="toDo_right">
                     <button class="edit_btn"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>

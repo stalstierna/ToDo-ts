@@ -22,7 +22,7 @@ header{
     text-align: center;
     font-size: 2rem;
     margin: 3rem;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
     color: #9c7196;
      -webkit-text-stroke: 2px #ffffff;
     text-shadow: 0px 0px 10px rgba(255, 255, 255);
@@ -36,6 +36,7 @@ header{
     box-shadow: 0px 0px 10px rgba(255, 255, 255);
     border: 3px solid #ffffff;
     /* transition: width 0.7s ease; */
+    border-radius: 10px 0px;
 }
 
 /* .underline:hover{
@@ -46,7 +47,7 @@ header{
 
 main{
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -55,12 +56,12 @@ main{
 }
 
 #toDo_fieldset {
-    background-color: #fff;
+    background-color: #ffffff;
     border: 1px solid #000;
     border-radius: 10px;
     padding: 1rem;
     /* margin-bottom: 1rem; */
-    margin: 0 3rem 1rem 3rem;
+    margin: 0 2rem 1rem 2rem;
 
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
@@ -80,6 +81,7 @@ main{
     font-size: 1.2rem;
     position: relative;
     width: 100%;
+    outline: none;
 }
 
 button{
@@ -111,8 +113,9 @@ transition: 0.3s;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding: 1rem;
-    margin: 0 3rem 1rem 3rem;
+    margin: 0 2rem 3rem 2rem;
     background-color: #fff;
+    height:fit-content;
 }
 
 #toDo_list {
@@ -130,6 +133,10 @@ transition: 0.3s;
     font-size: 1.2rem;
 }
 
+.toDo_task p{
+    margin-right: 0.5rem;
+}
+
 .toDo_left,
 .toDo_right {
     display: flex;
@@ -138,8 +145,8 @@ transition: 0.3s;
 }
 
 .toDo_checkBtn_done {
-    width: 25px;
-    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
     border-radius: 50%;
     border: 3px solid #397445;
     display: flex;
@@ -162,8 +169,8 @@ transition: 0.3s;
 }
 
 .toDo_checkBtn {
-    width: 25px;
-    height: 25px;
+    min-width: 25px;
+    min-height: 25px;
     border-radius: 50%;
     /* border: 3px solid #f3aa22; */
     border: 3px solid #d083c5;
