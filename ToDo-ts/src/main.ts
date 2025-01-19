@@ -39,7 +39,8 @@ const addTodo = (): void => {
 
   if (toDoInput.value !== "") {
     animationUnderliner()
-    idNum += 1;
+    idNum = getTodoIdFromStorage();
+    console.log(idNum)
     toDoArr.push({
       id: idNum,
       task: task,
@@ -62,7 +63,7 @@ const showTodoList = (): void => {
                     <p> ${task.task} </p>
                 </div>
                 <div class="toDo_right">
-                    <button class="edit_btn"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
+                    <button class="edit_btn" data-id="${task.id}"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
                     <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
                 </div>
              </li>`
@@ -96,8 +97,8 @@ const showTodoList = (): void => {
   });
   console.log(toDoArr)
   saveToStorage()
-}
 
+}
 
 const deleteTask = (dataId: string): void => {
   const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
@@ -123,6 +124,45 @@ const taskCompleted = (dataId: string): void => {
 
 const editTask = (dataId: string): void => {
   const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
+
+  const editSection = document.getElementById('edit_section') as HTMLElement;
+  const editInput = document.getElementById('edit_input') as HTMLInputElement;
+  const editBtn = document.getElementById('edit_button') as HTMLButtonElement;
+  editSection.style.display = "flex";
+
+  if (task != undefined) {
+    editInput.value = task.task;
+
+    editBtn.addEventListener('click', () => {
+      const newTaskText = editInput.value;
+      if (newTaskText != ""){
+        task.task = newTaskText;
+        editSection.style.display = "none";
+      }
+      showTodoList()
+    })
+
+    editInput.addEventListener('keydown', (event) => {
+      if (event.key === "Enter"){
+        const newTaskText = editInput.value;
+        if (newTaskText != ""){
+          task.task = newTaskText;
+          editSection.style.display = "none";
+        }
+        showTodoList()
+      }
+    })
+  }
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as HTMLElement;
+    if (target.id === "edit_section") {
+      console.log(target)
+      editSection.style.display = "none";
+    }
+  });
+
+  showTodoList()
 }
 
 function loadStorage():void {
@@ -137,13 +177,20 @@ function saveToStorage():void {
   localStorage.setItem("todo-list", JSON.stringify(toDoArr));
 }
 
+function getTodoIdFromStorage():number {
+  const savedList: string | null = localStorage.getItem("todo-list");
+  if (savedList){
+    toDoArr = JSON.parse(savedList)
+    if (toDoArr.length > 0) {
+      const arrOfIds = toDoArr.map((task) => task.id)
+      const nextId = Math.max(...arrOfIds) + 1;
+      return nextId;
+    }
+  }
+  return 1;
+}
+
 loadStorage()
-
-// function saveToStorage(){
-// }
-
-// function editTodo(){
-// }
 
 // function deleteList(){
 // }
