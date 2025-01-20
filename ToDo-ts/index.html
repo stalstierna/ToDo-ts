@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/background.css">
     <link rel="stylesheet" href="src/style.css">
-    <script src="src/main.ts" defer></script>
+    <script type="module" src="src/main.ts" defer></script>
     <title>ToDo List</title>
 </head>
 <body>
@@ -38,6 +38,9 @@
     
     <section id="toDo_section">
         <ul id="toDo_list"></ul>
+        <div id="clear_all_div">
+            <button id="clear_all">Clear All</button>
+        </div>
     </section>
 
 
@@ -45,7 +48,7 @@
         <div id="edit_content">
             <div id="edit_input_div">
              <input type="text" id="edit_input">
-             <button id="edit_button"><img src="img/plus-svgrepo-com (1).svg" alt=""></button>
+             <button id="edit_text_button"><img src="img/plus-svgrepo-com (1).svg" alt=""></button>
             </div>
         </div>
     </section>

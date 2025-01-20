@@ -1,3 +1,8 @@
+import  supabase  from "./supabaseClient";
+
+console.log(supabase)
+
+
 const toDoInput = document.getElementById("toDo_input") as HTMLInputElement;
 const toDoInputBtn = document.getElementById(
   "toDo_button"
@@ -76,6 +81,7 @@ const showTodoList = (): void => {
     task.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       const dataId = target.dataset.id;
+      console.log(target)
 
       if (dataId != undefined) {
         if (target.className === "edit_btn") {
@@ -127,13 +133,13 @@ const editTask = (dataId: string): void => {
 
   const editSection = document.getElementById('edit_section') as HTMLElement;
   const editInput = document.getElementById('edit_input') as HTMLInputElement;
-  const editBtn = document.getElementById('edit_button') as HTMLButtonElement;
+  const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
   editSection.style.display = "flex";
 
   if (task != undefined) {
     editInput.value = task.task;
 
-    editBtn.addEventListener('click', () => {
+    editTextBtn.addEventListener('click', () => {
       const newTaskText = editInput.value;
       if (newTaskText != ""){
         task.task = newTaskText;
@@ -165,6 +171,16 @@ const editTask = (dataId: string): void => {
   showTodoList()
 }
 
+function deleteList(){
+  const clearAllBtn = document.getElementById('clear_all') as HTMLButtonElement;
+
+  clearAllBtn.addEventListener('click', () => {
+    toDoArr.splice(0, toDoArr.length);
+    console.log(toDoArr)
+    showTodoList()
+  })
+}
+
 function loadStorage():void {
   const savedList: string | null = localStorage.getItem("todo-list");
   if (savedList) {
@@ -190,7 +206,5 @@ function getTodoIdFromStorage():number {
   return 1;
 }
 
+deleteList()
 loadStorage()
-
-// function deleteList(){
-// }
