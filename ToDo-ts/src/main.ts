@@ -1,7 +1,6 @@
-import  supabase  from "./supabaseClient";
+import supabase  from "./supabaseClient";
 
 console.log(supabase)
-
 
 const toDoInput = document.getElementById("toDo_input") as HTMLInputElement;
 const toDoInputBtn = document.getElementById(
@@ -10,6 +9,12 @@ const toDoInputBtn = document.getElementById(
 const toDoUl = document.getElementById("toDo_list") as HTMLUListElement;
 
 const underline = document.querySelector('.underline') as HTMLElement;
+
+const editSection = document.getElementById('edit_section') as HTMLElement;
+// const editInput = document.getElementById('edit_input') as HTMLInputElement;
+// const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
+
+
 
 let toDoArr: ToDo[] = [];
 let idNum = 0;
@@ -131,7 +136,7 @@ const taskCompleted = (dataId: string): void => {
 const editTask = (dataId: string): void => {
   const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 
-  const editSection = document.getElementById('edit_section') as HTMLElement;
+  // const editSection = document.getElementById('edit_section') as HTMLElement;
   const editInput = document.getElementById('edit_input') as HTMLInputElement;
   const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
   editSection.style.display = "flex";
@@ -139,25 +144,18 @@ const editTask = (dataId: string): void => {
   if (task != undefined) {
     editInput.value = task.task;
 
-    editTextBtn.addEventListener('click', () => {
+    editTextBtn.replaceWith(editTextBtn.cloneNode(true));
+    const newEditTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
+
+    newEditTextBtn.addEventListener('click', () => {
       const newTaskText = editInput.value;
       if (newTaskText != ""){
         task.task = newTaskText;
         editSection.style.display = "none";
       }
       showTodoList()
-    })
+    }, {once: true})
 
-    editInput.addEventListener('keydown', (event) => {
-      if (event.key === "Enter"){
-        const newTaskText = editInput.value;
-        if (newTaskText != ""){
-          task.task = newTaskText;
-          editSection.style.display = "none";
-        }
-        showTodoList()
-      }
-    })
   }
 
   document.addEventListener('click', (event) => {
@@ -171,7 +169,7 @@ const editTask = (dataId: string): void => {
   showTodoList()
 }
 
-function deleteList(){
+function deleteList(): void{
   const clearAllBtn = document.getElementById('clear_all') as HTMLButtonElement;
 
   clearAllBtn.addEventListener('click', () => {
@@ -208,3 +206,64 @@ function getTodoIdFromStorage():number {
 
 deleteList()
 loadStorage()
+
+
+// function updateTaskText(task: ToDo, editInput: HTMLInputElement): void{
+//   // const editSection = document.getElementById('edit_section') as HTMLElement;
+//   // const editInput = document.getElementById('edit_input') as HTMLInputElement;
+// console.log(task.task)
+//   const newTaskText = editInput.value;
+//       if (newTaskText != ""){
+//         task.task = newTaskText;
+//         editSection.style.display = "none";
+//       }
+// showTodoList()
+// }
+
+
+  // if (task != undefined) {
+  //   editInput.value = task.task;
+
+  //   editTextBtn.addEventListener('click', () => {
+  //     const newTaskText = editInput.value;
+  //     if (newTaskText != ""){
+  //       task.task = newTaskText;
+  //       editSection.style.display = "none";
+  //     }
+  //     showTodoList()
+  //   })
+
+  //   editInput.addEventListener('keydown', (event) => {
+  //     if (event.key === "Enter"){
+  //       const newTaskText = editInput.value;
+  //       if (newTaskText != ""){
+  //         task.task = newTaskText;
+  //         editSection.style.display = "none";
+  //       }
+  //       showTodoList()
+  //     }
+  //   })
+  // }
+
+
+
+      // editInput.addEventListener('keydown', (event) => {
+    //   if (event.key === "Enter"){
+    //     const newTaskText = editInput.value;
+    //     if (newTaskText != ""){
+    //       task.task = newTaskText;
+    //       editSection.style.display = "none";
+    //     }
+    //     showTodoList()
+    //   }
+    // })
+
+    
+    // const handleEnterKey = (event: KeyboardEvent) => {
+    //   if (event.key === "Enter") {
+    //     newEditTextBtn.click();
+    //     editInput.removeEventListener('keydown', handleEnterKey);
+    //   }
+    // }
+    // editInput.removeEventListener('keydown', handleEnterKey);
+    // editInput.addEventListener('keydown', handleEnterKey);
