@@ -1,5 +1,8 @@
-import supabase  from "./supabaseClient";
-import { getTodos, insertTodo, editTodo, deleteTodo, getTodo, getTodoStatus, deleteTodoList } from './crud';
+import supabase from "./supabaseClient";
+import {
+  getTodos, insertTodo, editTodo, deleteTodo, getTodo,
+  getTodoStatus, deleteTodoList, createUser, logInUser, logoutUser
+} from './crud';
 
 console.log(supabase)
 
@@ -8,13 +11,12 @@ const toDoInputBtn = document.getElementById(
   "toDo_button"
 ) as HTMLButtonElement;
 const toDoUl = document.getElementById("toDo_list") as HTMLUListElement;
-
 const underline = document.querySelector('.underline') as HTMLElement;
-
 const editSection = document.getElementById('edit_section') as HTMLElement;
 // const editInput = document.getElementById('edit_input') as HTMLInputElement;
 // const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
-
+const switchToLogin = document.getElementById('login_top_btn') as HTMLElement;
+const switchToSignup = document.getElementById('register_top_btn') as HTMLElement;
 
 
 // let toDoArr: ToDo[] = [];
@@ -25,6 +27,38 @@ export interface ToDo {
   task: string;
   completed: boolean;
 }
+
+
+switchToLogin.addEventListener('click', () => {
+  switchToLogin.style.backgroundColor = "#e5c2e0"
+  switchToSignup.style.backgroundColor = "transparent"
+  switchToLogin.style.border = "1px solid #000"
+  switchToSignup.style.border = "none"
+
+  const signupField = document.getElementById('register_user_fieldset') as HTMLFieldSetElement;
+  const loginField = document.getElementById('login_user_fieldset') as HTMLFieldSetElement;
+
+  loginField.style.display = "flex";
+  signupField.style.display = "none";
+
+})
+
+switchToSignup.addEventListener('click', () => {
+  switchToSignup.style.backgroundColor = "#e5c2e0"
+  switchToLogin.style.backgroundColor = "transparent"
+  switchToSignup.style.border = "1px solid #000"
+  switchToLogin.style.border = "none"
+
+  const signupField = document.getElementById('register_user_fieldset') as HTMLFieldSetElement;
+  const loginField = document.getElementById('login_user_fieldset') as HTMLFieldSetElement;
+
+  signupField.style.display = "flex";
+  loginField.style.display = "none";
+
+
+})
+
+
 
 toDoInputBtn.addEventListener("click", () => {
   console.log(toDoInput.value);
@@ -38,15 +72,15 @@ toDoInput.addEventListener("keydown", (event) => {
 })
 
 const animationUnderliner = () => {
-    underline.style.transition = "0.8s"
-    setTimeout(() => {
+  underline.style.transition = "0.8s"
+  setTimeout(() => {
     underline.style.width = "120px";
-    }, 800)
-    underline.style.width = "200px";
+  }, 800)
+  underline.style.width = "200px";
 }
 
 const addTodo = (): void => {
-  const text: string= toDoInput.value.trim()
+  const text: string = toDoInput.value.trim()
 
   if (toDoInput.value !== "") {
     animationUnderliner()
@@ -120,7 +154,7 @@ export const showTodoList = async () => {
 }
 
 const deleteTask = (dataId: string): void => {
-deleteTodo(dataId)
+  deleteTodo(dataId)
   // const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 
   // if (task != undefined)
@@ -134,8 +168,8 @@ const taskCompleted = async (dataId: string) => {
 
 const editTask = async (dataId: string) => {
   // const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
-const todoText = await getTodo(dataId)
-console.log(todoText)
+  const todoText = await getTodo(dataId)
+  console.log(todoText)
   // const editSection = document.getElementById('edit_section') as HTMLElement;
   const editInput = document.getElementById('edit_input') as HTMLInputElement;
   const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
@@ -149,12 +183,12 @@ console.log(todoText)
 
     newEditTextBtn.addEventListener('click', () => {
       const newTaskText = editInput.value;
-      if (newTaskText != ""){
-       todoText[0].task = newTaskText;
+      if (newTaskText != "") {
+        todoText[0].task = newTaskText;
         editSection.style.display = "none";
       }
       editTodo(dataId, newTaskText)
-    }, {once: true})
+    }, { once: true })
 
   }
 
@@ -166,7 +200,7 @@ console.log(todoText)
   });
 }
 
-function deleteList(): void{
+function deleteList(): void {
   const clearAllBtn = document.getElementById('clear_all') as HTMLButtonElement;
 
   clearAllBtn.addEventListener('click', () => {
@@ -175,6 +209,49 @@ function deleteList(): void{
     deleteTodoList()
   })
 }
+
+function signUp() {
+  const emailInput = document.getElementById('register_email') as HTMLInputElement;
+  const passwordInput = document.getElementById('register_password') as HTMLInputElement;
+  const signUpBtn = document.getElementById('register_btn') as HTMLButtonElement;
+
+  signUpBtn.addEventListener('click', () => {
+    createUser(emailInput.value, passwordInput.value)
+  })
+}
+
+function logIn() {
+  const emailInput = document.getElementById('login_email') as HTMLInputElement;
+  const passwordInput = document.getElementById('login_password') as HTMLInputElement;
+  const logInBtn = document.getElementById('login_btn') as HTMLButtonElement;
+
+  logInBtn.addEventListener('click', () => {
+    logInUser(emailInput.value, passwordInput.value)
+    animationUnderliner()
+    getTodos()
+    document.getElementById('login_user_section')!.style.display = "none";
+    document.getElementById('toDo_fieldset')!.style.display = "inline";
+    document.getElementById('toDo_section')!.style.display = "inline";
+  })
+}
+
+function signOut() {
+  const signOutBtn = document.getElementById('sign_out_btn') as HTMLButtonElement;
+
+  signOutBtn.addEventListener('click', () => {
+    logoutUser()
+    document.getElementById('toDo_fieldset')!.style.display = "none";
+    document.getElementById('toDo_section')!.style.display = "none";
+    document.getElementById('login_user_section')!.style.display = "flex";
+
+  })
+}
+
+signUp()
+logIn()
+signOut()
+
+
 
 // function loadStorage():void {
 //   const savedList: string | null = localStorage.getItem("todo-list");
@@ -204,64 +281,3 @@ function deleteList(): void{
 deleteList()
 showTodoList()
 // loadStorage()
-
-
-// function updateTaskText(task: ToDo, editInput: HTMLInputElement): void{
-//   // const editSection = document.getElementById('edit_section') as HTMLElement;
-//   // const editInput = document.getElementById('edit_input') as HTMLInputElement;
-// console.log(task.task)
-//   const newTaskText = editInput.value;
-//       if (newTaskText != ""){
-//         task.task = newTaskText;
-//         editSection.style.display = "none";
-//       }
-// showTodoList()
-// }
-
-
-  // if (task != undefined) {
-  //   editInput.value = task.task;
-
-  //   editTextBtn.addEventListener('click', () => {
-  //     const newTaskText = editInput.value;
-  //     if (newTaskText != ""){
-  //       task.task = newTaskText;
-  //       editSection.style.display = "none";
-  //     }
-  //     showTodoList()
-  //   })
-
-  //   editInput.addEventListener('keydown', (event) => {
-  //     if (event.key === "Enter"){
-  //       const newTaskText = editInput.value;
-  //       if (newTaskText != ""){
-  //         task.task = newTaskText;
-  //         editSection.style.display = "none";
-  //       }
-  //       showTodoList()
-  //     }
-  //   })
-  // }
-
-
-
-      // editInput.addEventListener('keydown', (event) => {
-    //   if (event.key === "Enter"){
-    //     const newTaskText = editInput.value;
-    //     if (newTaskText != ""){
-    //       task.task = newTaskText;
-    //       editSection.style.display = "none";
-    //     }
-    //     showTodoList()
-    //   }
-    // })
-
-    
-    // const handleEnterKey = (event: KeyboardEvent) => {
-    //   if (event.key === "Enter") {
-    //     newEditTextBtn.click();
-    //     editInput.removeEventListener('keydown', handleEnterKey);
-    //   }
-    // }
-    // editInput.removeEventListener('keydown', handleEnterKey);
-    // editInput.addEventListener('keydown', handleEnterKey);

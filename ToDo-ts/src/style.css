@@ -57,7 +57,7 @@ main {
 }
 
 #toDo_fieldset {
-    display: inline;
+    display: none;
     background-color: #ffffff;
     border: 1px solid #000;
     border-radius: 10px;
@@ -113,7 +113,7 @@ button:hover {
 }
 
 #toDo_section {
-    display: inline;
+    display: none;
     border: 1px solid #000;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -266,6 +266,7 @@ button:hover {
     display: flex;
     justify-content: end;
     padding: 0rem 0.5rem 1rem 0rem;
+    gap: 1rem;
 }
 
 #clear_all{
@@ -374,6 +375,17 @@ button:hover {
     width: 100%;
     height: 50px;
     margin-top: 1rem;
+}
+
+#sign_out_btn{
+    width: 76px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 
