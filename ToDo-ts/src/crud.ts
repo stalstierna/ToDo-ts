@@ -7,6 +7,7 @@ export async function getTodos() {
     const {error, data} = await supabase
     .from('Todo')
     .select()
+    .order('id', { ascending: true });
     if (error){
         console.error('Error fetching users:', error);
     }else {
@@ -18,6 +19,7 @@ export async function insertTodo(task:ToDo){
     const {error} = await supabase
     .from('Todo')
     .insert([task])
+    await showTodoList()
     if(error){
         console.log('Error adding todo:', error)
     }
@@ -28,7 +30,7 @@ export async function editTodo(id: string, newText: string) {
     .from('Todo')
     .update({task: `${newText}`})
     .eq('id', id)
-    showTodoList()
+    await showTodoList()
     if (error){
         console.error('Error editing todo:', error)
     }
@@ -40,7 +42,7 @@ export async function completeTodo(task: ToDo[]) {
     .from('Todo')
     .update({completed: status})
     .eq('id', task[0].id);
-    showTodoList();
+     await showTodoList();
     if (error){
      console.error('Error updating todo:', error);
     }
@@ -51,7 +53,7 @@ export async function deleteTodo(id: string) {
     .from('Todo')
     .delete()
     .eq('id', id)
-    showTodoList()
+    await showTodoList()
 
     if (error){
         console.error('Error deleting todo:', error);
@@ -86,7 +88,7 @@ export async function deleteTodoList() {
     .from('Todo')
     .delete()
     .gte('id', 0)
-    showTodoList()
+    await showTodoList()
 
     if (error){
         console.error('Error deleting todolist:', error);

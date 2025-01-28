@@ -64,7 +64,6 @@ const addTodo = (): void => {
     }
     insertTodo(todo)
     toDoInput.value = "";
-    showTodoList()
   }
 }
 
@@ -203,7 +202,8 @@ function deleteList(): void{
 // }
 
 deleteList()
-loadStorage()
+showTodoList()
+// loadStorage()
 
 
 // function updateTaskText(task: ToDo, editInput: HTMLInputElement): void{

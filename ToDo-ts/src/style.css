@@ -57,6 +57,7 @@ main {
 }
 
 #toDo_fieldset {
+    display: inline;
     background-color: #ffffff;
     border: 1px solid #000;
     border-radius: 10px;
@@ -112,6 +113,7 @@ button:hover {
 }
 
 #toDo_section {
+    display: inline;
     border: 1px solid #000;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
@@ -285,8 +287,98 @@ button:hover {
    height: 100%;
 }
 
-@media (min-width: 450px ){
 
+
+#login_user_section{
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    padding: 2rem 1rem 2rem 1rem;
+    margin: 0 0rem 3rem 0rem;
+    width: 80vw;
+    max-width: 800px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: fit-content; */
+}
+
+
+#top_btns {
+    display: flex;
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    display: flex;
+    justify-content:center;
+    /* gap: 1rem; */
+    width: max-content;
+    /* height: max-content; */
+    margin-bottom: 2rem;
+}
+
+#top_btns button{
+    /* border: 2px solid #000; */
+    border-radius: 5px;
+    /* background-color: transparent; */
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 150px;
+    height: 50px;
+}
+
+#login_top_btn{
+    border: 1px solid #000;
+    background-color: #e5c2e0;
+}
+
+#register_top_btn{
+    background-color: transparent;
+    border: none;
+}
+
+#register_user_fieldset{
+    display: none;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+    gap: 1rem;
+}
+
+#login_user_fieldset{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+    gap: 1rem;
+}
+
+#login_user_section input{
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #0000002d;
+    /* border: none; */
+}
+
+#register_btn, #login_btn{
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    border: 2px solid #000;
+    /* background-color: transparent; */
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    height: 50px;
+    margin-top: 1rem;
+}
+
+
+
+@media (min-width: 450px ){
     header{
         font-size: 2rem;
         -webkit-text-stroke: 2px #ffffff;
