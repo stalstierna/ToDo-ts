@@ -13,6 +13,15 @@ supabase.auth.onAuthStateChange((event, session) => {
     }
 });
 
+async function checkSession() {
+    const { data, error } = await supabase.auth.getSession();
+    console.log("Session data:", data);
+    if (error) console.error("Error fetching session:", error);
+  }
+  
+  checkSession();
+
+
 
 export async function getTodos() {
     const user: User | null = (await supabase.auth.getUser()).data?.user;
@@ -129,8 +138,10 @@ export async function createUser(email: string, password: string) {
     });
     if (error){
         console.error('Error registering user:', error.message)
+        return false
     } else{
         console.log("User registered!")
+        return true
     }
 }
 
@@ -140,9 +151,12 @@ export async function logInUser(email: string, password: string) {
         password: password,
     });
     if (error){
-        console.error('Error logging in user:', error.message)
+        console.error('Error logging in user:', error.message);
+        alert("Fel användarnamn eller lösenord")
+        return false;
     } else{
         console.log('User logged in!', data)
+        return true;
     }
 }
 
@@ -154,5 +168,10 @@ export async function logoutUser() {
         console.log('User logged out successfully!');
     }
 }
+
+window.addEventListener("load", async () => {
+    await supabase.auth.signOut();
+    console.log("Användaren har loggats ut vid sidladdning");
+  });
 
 

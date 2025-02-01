@@ -13,14 +13,8 @@ const toDoInputBtn = document.getElementById(
 const toDoUl = document.getElementById("toDo_list") as HTMLUListElement;
 const underline = document.querySelector('.underline') as HTMLElement;
 const editSection = document.getElementById('edit_section') as HTMLElement;
-// const editInput = document.getElementById('edit_input') as HTMLInputElement;
-// const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
 const switchToLogin = document.getElementById('login_top_btn') as HTMLElement;
 const switchToSignup = document.getElementById('register_top_btn') as HTMLElement;
-
-
-// let toDoArr: ToDo[] = [];
-// let idNum = 0;
 
 export interface ToDo {
   id?: string;
@@ -58,10 +52,7 @@ switchToSignup.addEventListener('click', () => {
 
 })
 
-
-
 toDoInputBtn.addEventListener("click", () => {
-  console.log(toDoInput.value);
   addTodo();
 });
 
@@ -84,14 +75,6 @@ const addTodo = (): void => {
 
   if (toDoInput.value !== "") {
     animationUnderliner()
-    //idNum = getTodoIdFromStorage();
-    // console.log(idNum)
-    // toDoArr.push({
-    //   // id: idNum.toString(),
-    //   task: task,
-    //   completed: false,
-    // });
-
     const todo: ToDo = {
       task: text,
       completed: false,
@@ -129,48 +112,33 @@ export const showTodoList = async () => {
     task.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
       const dataId = target.dataset.id;
-      console.log(target)
 
       if (dataId != undefined) {
         if (target.className === "edit_btn") {
-          console.log("Edit")
           editTask(dataId)
         } else if (target.className === "delete_btn") {
-          console.log("Delete")
           deleteTask(dataId)
         } else if (target.className === "toDo_checkBtn") {
-          console.log("check")
           taskCompleted(dataId)
         } else if (target.className === "toDo_checkBtn_done") {
-          console.log("undo")
           taskCompleted(dataId)
         }
       }
 
     })
   });
-  // saveToStorage()
-
 }
 
 const deleteTask = (dataId: string): void => {
   deleteTodo(dataId)
-  // const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
-
-  // if (task != undefined)
-  //   toDoArr.splice(toDoArr.indexOf(dataId), 1)
 }
 
 const taskCompleted = async (dataId: string) => {
   getTodoStatus(dataId);
-  // const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
 }
 
 const editTask = async (dataId: string) => {
-  // const task: ToDo | undefined = toDoArr.find((task) => task.id === Number(dataId))
   const todoText = await getTodo(dataId)
-  console.log(todoText)
-  // const editSection = document.getElementById('edit_section') as HTMLElement;
   const editInput = document.getElementById('edit_input') as HTMLInputElement;
   const editTextBtn = document.getElementById('edit_text_button') as HTMLButtonElement;
   editSection.style.display = "flex";
@@ -204,8 +172,6 @@ function deleteList(): void {
   const clearAllBtn = document.getElementById('clear_all') as HTMLButtonElement;
 
   clearAllBtn.addEventListener('click', () => {
-    // toDoArr.splice(0, toDoArr.length);
-    // console.log(toDoArr)
     deleteTodoList()
   })
 }
@@ -215,27 +181,51 @@ function signUp() {
   const passwordInput = document.getElementById('register_password') as HTMLInputElement;
   const signUpBtn = document.getElementById('register_btn') as HTMLButtonElement;
 
-  signUpBtn.addEventListener('click', () => {
-    createUser(emailInput.value, passwordInput.value)
+  signUpBtn.addEventListener('click', async () => {
+
+    try {
+      const successLogin = await createUser(emailInput.value, passwordInput.value)
+
+      if (successLogin) {
+        animationUnderliner()
+        await showTodoList()
+        document.getElementById('login_user_section')!.style.display = "none";
+        document.getElementById('toDo_fieldset')!.style.display = "inline";
+        document.getElementById('toDo_section')!.style.display = "inline";
+      } 
+    }catch (error){
+        console.error("Inloggningsfel", error);
+    }
   })
 }
 
-function logIn() {
+async function logIn() {
   const emailInput = document.getElementById('login_email') as HTMLInputElement;
   const passwordInput = document.getElementById('login_password') as HTMLInputElement;
   const logInBtn = document.getElementById('login_btn') as HTMLButtonElement;
 
-  logInBtn.addEventListener('click', () => {
-    logInUser(emailInput.value, passwordInput.value)
-    animationUnderliner()
-    getTodos()
-    document.getElementById('login_user_section')!.style.display = "none";
-    document.getElementById('toDo_fieldset')!.style.display = "inline";
-    document.getElementById('toDo_section')!.style.display = "inline";
+
+  logInBtn.addEventListener('click', async () => {
+
+    try {
+      const successLogin = await logInUser(emailInput.value, passwordInput.value)
+
+      if (successLogin) {
+        animationUnderliner()
+        await showTodoList()
+        document.getElementById('login_user_section')!.style.display = "none";
+        document.getElementById('toDo_fieldset')!.style.display = "inline";
+        document.getElementById('toDo_section')!.style.display = "inline";
+      } 
+    }catch (error){
+        console.error("Inloggningsfel", error);
+    }
   })
 }
 
 function signOut() {
+  const emailInput = document.getElementById('login_email') as HTMLInputElement;
+  const passwordInput = document.getElementById('login_password') as HTMLInputElement;
   const signOutBtn = document.getElementById('sign_out_btn') as HTMLButtonElement;
 
   signOutBtn.addEventListener('click', () => {
@@ -243,41 +233,13 @@ function signOut() {
     document.getElementById('toDo_fieldset')!.style.display = "none";
     document.getElementById('toDo_section')!.style.display = "none";
     document.getElementById('login_user_section')!.style.display = "flex";
-
+    emailInput.value = "";
+    passwordInput.value = "";
   })
 }
 
 signUp()
 logIn()
 signOut()
-
-
-
-// function loadStorage():void {
-//   const savedList: string | null = localStorage.getItem("todo-list");
-//   if (savedList) {
-//     toDoArr = JSON.parse(savedList)
-//     showTodoList()
-//   }
-// }
-
-// function saveToStorage():void {
-//   localStorage.setItem("todo-list", JSON.stringify(toDoArr));
-// }
-
-// function getTodoIdFromStorage():number {
-//   const savedList: string | null = localStorage.getItem("todo-list");
-//   if (savedList){
-//     toDoArr = JSON.parse(savedList)
-//     if (toDoArr.length > 0) {
-//       const arrOfIds = toDoArr.map((task) => task.id)
-//       const nextId = Math.max(...arrOfIds) + 1;
-//       return nextId;
-//     }
-//   }
-//   return 1;
-// }
-
 deleteList()
 showTodoList()
-// loadStorage()
