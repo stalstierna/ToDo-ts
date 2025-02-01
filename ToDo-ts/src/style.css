@@ -32,7 +32,6 @@ header {
     background-color: #9c7196;
     box-shadow: 0px 0px 10px rgba(255, 255, 255);
     border: 2px solid #ffffff;
-    /* transition: width 0.7s ease; */
     border-radius: 10px 0px;
 }
 
@@ -43,8 +42,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* align-items: center;
-    justify-content: center; */
 }
 
 #toDo_fieldset {
@@ -53,7 +50,6 @@ main {
     border: 1px solid #000;
     border-radius: 10px;
     padding: 1rem;
-    /* margin-bottom: 1rem; */
     margin: 0 0rem 1rem 0rem;
     width: 80vw;
     max-width: 600px;
@@ -66,8 +62,6 @@ main {
     padding: 0.5rem;
     border-radius: 5px;
     display: flex;
-    width: 80vw;
-    max-width: 600px;
     justify-content: space-between;
 }
 
@@ -79,11 +73,6 @@ main {
     width: 100%;
     outline: none;
 }
-
-/* button {
-    transition: 0.3s;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-} */
 
 button:hover {
     opacity: 70%;
@@ -98,7 +87,6 @@ button:hover {
     width: 30px;
     height: 30px;
     cursor: pointer;
-    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); */
 }
 
 #toDo_button img {
@@ -240,6 +228,7 @@ button:hover {
     padding: 1rem;
     background-color: #fff; 
     width: 80vw;
+    max-width: 600px;
 }
 
 #edit_text_button img{
@@ -290,16 +279,12 @@ button:hover {
     border-radius: 5px;
     display: flex;
     justify-content:center;
-    /* gap: 1rem; */
     width: max-content;
-    /* height: max-content; */
     margin-bottom: 2rem;
 }
 
 #top_btns button{
-    /* border: 2px solid #000; */
     border-radius: 5px;
-    /* background-color: transparent; */
     cursor: pointer;
     font-size: 2rem;
     font-weight: 500;
@@ -333,20 +318,23 @@ button:hover {
     gap: 1rem;
 }
 
+#login_user_section{
+    width: 80vw;
+    max-width: 600px;
+}
+
 #login_user_section input{
     background-color: #e5c2e031;
     border-radius: 5px;
     padding: 0.5rem;
     font-size: 1.2rem;
     border: 1px solid #0000002d;
-    /* border: none; */
 }
 
 #register_btn, #login_btn{
     border-radius: 5px;
     background-color: #e5c2e0;
     border: 2px solid #000;
-    /* background-color: transparent; */
     cursor: pointer;
     font-size: 2rem;
     font-weight: 500;
