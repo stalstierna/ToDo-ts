@@ -98,8 +98,8 @@ export const showTodoList = async () => {
                       <p> ${task.task} </p>
                   </div>
                   <div class="toDo_right">
-                      <button class="edit_btn" data-id="${task.id}"><img class="img_edit" src="ToDo-ts/img/edit-svgrepo-com.svg" alt="Edit"></button>
-                      <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="ToDo-ts/img/delete-2-svgrepo-com.svg" alt="Delete"></button>
+                      <button class="edit_btn" data-id="${task.id}"><img class="img_edit" src="ToDo-ts/public/img/edit-svgrepo-com.svg" alt="Edit"></button>
+                      <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="ToDo-ts/public/img/delete-2-svgrepo-com.svg" alt="Delete"></button>
                   </div>
                </li>`
     ).join("")
