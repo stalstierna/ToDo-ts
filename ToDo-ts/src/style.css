@@ -44,6 +44,10 @@ main {
     align-items: center;
 }
 
+button{
+    color: #000;
+}
+
 #toDo_fieldset {
     display: none;
     background-color: #ffffff;
