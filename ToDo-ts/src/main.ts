@@ -93,13 +93,13 @@ export const showTodoList = async () => {
                   <div class="toDo_left">
                     <div class="${task.completed ? "toDo_checkBtn_done" : "toDo_checkBtn"
       }" data-id="${task.id}">
-                       ${task.completed ? `<img src="img/check-small-svgrepo-com.svg" alt="">` : ""}
+                       ${task.completed ? `<img src="img/check-small-svgrepo-com.svg" alt="check">` : ""}
                     </div>
                       <p> ${task.task} </p>
                   </div>
                   <div class="toDo_right">
-                      <button class="edit_btn" data-id="${task.id}"><img class="img_edit" src="img/edit-svgrepo-com.svg" alt=""></button>
-                      <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="img/delete-2-svgrepo-com.svg" alt=""></button>
+                      <button class="edit_btn" data-id="${task.id}"><img class="img_edit" src="ToDo-ts/img/edit-svgrepo-com.svg" alt="Edit"></button>
+                      <button class="delete_btn" data-id="${task.id}"><img class="img_delete"  src="ToDo-ts/img/delete-2-svgrepo-com.svg" alt="Delete"></button>
                   </div>
                </li>`
     ).join("")
