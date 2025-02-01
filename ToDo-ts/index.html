@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/background.css">
     <link rel="stylesheet" href="src/style.css">
-    <script type="module" src="src/main.ts" defer></script>
+    <script type="module" src="src/main.ts"></script>
     <title>ToDo List</title>
 </head>
 <body>
@@ -40,6 +40,8 @@
         <ul id="toDo_list"></ul>
         <div id="clear_all_div">
             <button id="clear_all">Clear All</button>
+            <button id="sign_out_btn">Sign Out</button>
+
         </div>
     </section>
 
@@ -51,6 +53,25 @@
              <button id="edit_text_button"><img src="img/plus-svgrepo-com (1).svg" alt=""></button>
             </div>
         </div>
+    </section>
+
+    <section id="login_user_section">
+            <div id="top_btns">
+                <button id="login_top_btn">Login</button>
+                <button id="register_top_btn">Signup</button>
+            </div>
+
+            <fieldset id="login_user_fieldset">
+                <input type="email" id="login_email" placeholder="E-mail">
+                <input type="password" id="login_password" placeholder="Password">
+                <button id="login_btn">Login</button>
+            </fieldset>
+
+            <fieldset id="register_user_fieldset">
+                <input type="email" id="register_email" placeholder="E-mail">
+                <input type="password" id="register_password" placeholder="Password">
+                <button id="register_btn">Create Account</button>
+            </fieldset>
     </section>
 
 </main>

@@ -11,8 +11,6 @@
 body {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
 }
 
 header {
@@ -22,7 +20,6 @@ header {
     text-align: center;
     font-size: 1.6rem;
     margin: 3rem;
-    /* margin-bottom: 3rem; */
     color: #9c7196;
     -webkit-text-stroke: 1.5px #ffffff;
     text-shadow: 0px 0px 10px rgba(255, 255, 255);
@@ -39,12 +36,6 @@ header {
     border-radius: 10px 0px;
 }
 
-/* .underline:hover{
-    width: 200px;
-    transition: 0.7s;
-} */
-
-
 main {
     width: 100%;
     min-height: 100%;
@@ -57,6 +48,7 @@ main {
 }
 
 #toDo_fieldset {
+    display: none;
     background-color: #ffffff;
     border: 1px solid #000;
     border-radius: 10px;
@@ -64,7 +56,7 @@ main {
     /* margin-bottom: 1rem; */
     margin: 0 0rem 1rem 0rem;
     width: 80vw;
-    max-width: 800px;
+    max-width: 600px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -86,9 +78,10 @@ main {
     outline: none;
 }
 
-button {
+/* button {
     transition: 0.3s;
-}
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+} */
 
 button:hover {
     opacity: 70%;
@@ -99,11 +92,11 @@ button:hover {
     background-color: transparent;
     border-radius: 5px;
     border: 2px solid #000;
-    border-radius: 5px;
     background-color: #e5c2e0;
     width: 30px;
     height: 30px;
     cursor: pointer;
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); */
 }
 
 #toDo_button img {
@@ -111,13 +104,14 @@ button:hover {
 }
 
 #toDo_section {
+    display: none;
     border: 1px solid #000;
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     padding: 1rem 1rem 0 1rem;
     margin: 0 0rem 3rem 0rem;
     width: 80vw;
-    max-width: 800px;
+    max-width: 600px;
     background-color: #fff;
     height: fit-content;
 }
@@ -172,7 +166,6 @@ button:hover {
     width: 60px;
     top: -23px;
     left: -13px;
-    /* background-color: #397445; */
     pointer-events: none;
 }
 
@@ -180,12 +173,10 @@ button:hover {
     min-width: 25px;
     min-height: 25px;
     border-radius: 50%;
-    /* border: 3px solid #f3aa22; */
     border: 3px solid #d083c5;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: #ffd381; */
     background-color: #e5c2e0;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
@@ -228,7 +219,6 @@ button:hover {
 #edit_section {
     display: none;
     justify-content: center;
-    /* align-items: center; */
     position: fixed;
     z-index: 1;
     right: 0;
@@ -236,9 +226,7 @@ button:hover {
     width: 100vw;
     height: 100vh;
     overflow: auto;
-    /* background-color: rgb(0, 0, 0); */
     background-color: rgba(0, 0, 0, 0.7);
-
 }
 
 #edit_content{
@@ -261,12 +249,10 @@ button:hover {
     display: flex;
     justify-content: end;
     padding: 0rem 0.5rem 1rem 0rem;
+    gap: 1rem;
 }
 
 #clear_all{
-    /* display: flex;
-    align-items: center;
-    justify-content: space-around; */
     width: 76px;
     height: 30px;
     border: 2px solid #000;
@@ -281,8 +267,106 @@ button:hover {
    height: 100%;
 }
 
-@media (min-width: 450px ){
+#login_user_section{
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    padding: 2rem 1rem 2rem 1rem;
+    margin: 0 0rem 3rem 0rem;
+    width: 80vw;
+    max-width: 800px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+
+#top_btns {
+    display: flex;
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    display: flex;
+    justify-content:center;
+    /* gap: 1rem; */
+    width: max-content;
+    /* height: max-content; */
+    margin-bottom: 2rem;
+}
+
+#top_btns button{
+    /* border: 2px solid #000; */
+    border-radius: 5px;
+    /* background-color: transparent; */
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 150px;
+    height: 50px;
+}
+
+#login_top_btn{
+    border: 1px solid #000;
+    background-color: #e5c2e0;
+}
+
+#register_top_btn{
+    background-color: transparent;
+    border: none;
+}
+
+#register_user_fieldset{
+    display: none;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+    gap: 1rem;
+}
+
+#login_user_fieldset{
+    display: flex;
+    flex-direction: column;
+    border: none;
+    width: 100%;
+    gap: 1rem;
+}
+
+#login_user_section input{
+    background-color: #e5c2e031;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #0000002d;
+    /* border: none; */
+}
+
+#register_btn, #login_btn{
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    border: 2px solid #000;
+    /* background-color: transparent; */
+    cursor: pointer;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 100%;
+    height: 50px;
+    margin-top: 1rem;
+}
+
+#sign_out_btn{
+    width: 76px;
+    height: 30px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #e5c2e0;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+
+@media (min-width: 450px ){
     header{
         font-size: 2rem;
         -webkit-text-stroke: 2px #ffffff;
