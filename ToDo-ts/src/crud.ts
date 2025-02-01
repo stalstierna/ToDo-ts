@@ -4,23 +4,22 @@ import { ToDo } from "./main";
 import { showTodoList } from "./main";
 import { User } from "@supabase/supabase-js";
 
-supabase.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN') {
-        console.log('User signed in:', session);
-        showTodoList(); // Ladda todos för inloggad användare
-    } else if (event === 'SIGNED_OUT') {
-        console.log('User signed out');
-    }
-});
+// supabase.auth.onAuthStateChange((event, session) => {
+//     if (event === 'SIGNED_IN') {
+//         console.log('User signed in:', session);
+//         // showTodoList(); 
+//     } else if (event === 'SIGNED_OUT') {
+//         console.log('User signed out');
+//     }
+// });
 
-async function checkSession() {
-    const { data, error } = await supabase.auth.getSession();
-    console.log("Session data:", data);
-    if (error) console.error("Error fetching session:", error);
-  }
+// async function checkSession() {
+//     const { data, error } = await supabase.auth.getSession();
+//     console.log("Session data:", data);
+//     if (error) console.error("Error fetching session:", error);
+//   }
   
-  checkSession();
-
+//   checkSession();
 
 
 export async function getTodos() {
@@ -44,7 +43,6 @@ export async function getTodos() {
 
 export async function insertTodo(task:ToDo){
     const user: User | null = (await supabase.auth.getUser()).data?.user;
-    console.log(user)
 
     if (!user) {
         console.error('No user logged in');
@@ -107,6 +105,7 @@ export async function getTodo(id: string) {
         return data;
     }
 }
+
 export async function getTodoStatus(id: string) {
     const {data, error} = await supabase
     .from('Todo')
@@ -140,13 +139,12 @@ export async function createUser(email: string, password: string) {
         console.error('Error registering user:', error.message)
         return false
     } else{
-        console.log("User registered!")
         return true
     }
 }
 
 export async function logInUser(email: string, password: string) {
-    const {data, error} = await supabase.auth.signInWithPassword({
+    const {error} = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
     });
@@ -155,7 +153,6 @@ export async function logInUser(email: string, password: string) {
         alert("Fel användarnamn eller lösenord")
         return false;
     } else{
-        console.log('User logged in!', data)
         return true;
     }
 }
@@ -164,14 +161,11 @@ export async function logoutUser() {
     const { error } = await supabase.auth.signOut();
     if (error) {
         console.error('Error logging out:', error.message);
-    } else {
-        console.log('User logged out successfully!');
-    }
+    } 
 }
 
 window.addEventListener("load", async () => {
     await supabase.auth.signOut();
-    console.log("Användaren har loggats ut vid sidladdning");
   });
 
 
