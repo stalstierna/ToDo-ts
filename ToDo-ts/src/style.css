@@ -66,6 +66,8 @@ main {
     padding: 0.5rem;
     border-radius: 5px;
     display: flex;
+    width: 80vw;
+    max-width: 600px;
     justify-content: space-between;
 }
 
