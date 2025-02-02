@@ -30,3 +30,5 @@ av appen mer eftersom jag tycker det är roligast. Men det är något jag ska f�
 Allt som allt är jag ändå nöjd med arbetet! Det har varit väldigt roligt och lärorikt och jag tycker ändå
 min app blev ganska bra. Det finns säkert buggar kvar och saker jag borde gjort bättre och på annat sätt,
 men det fungerar och jag har försökt lösa de buggar jag än så länge har hittat!
+
+[Länk till netlify](https://pinktodoo.netlify.app/)
