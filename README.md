@@ -31,4 +31,4 @@ Allt som allt är jag ändå nöjd med arbetet! Det har varit väldigt roligt oc
 min app blev ganska bra. Det finns säkert buggar kvar och saker jag borde gjort bättre och på annat sätt,
 men det fungerar och jag har försökt lösa de buggar jag än så länge har hittat!
 
-{Länk till netlify(https://pinktodoo.netlify.app/)}
+[Länk till netlify](https://pinktodoo.netlify.app/)
